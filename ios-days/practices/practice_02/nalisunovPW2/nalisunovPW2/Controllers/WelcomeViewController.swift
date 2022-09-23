@@ -8,7 +8,11 @@
 import UIKit
 
 extension CALayer {
-    func applyShadow(color: UIColor = .systemGray, opacity: Float = 0.3, radius: CGFloat = 10) {
+    func applyShadow(
+        color: UIColor = .systemGray,
+        opacity: Float = 0.3,
+        radius: CGFloat = 10
+    ) {
         self.shadowColor = color.cgColor
         self.shadowOpacity = opacity
         self.shadowOffset = .zero
@@ -19,7 +23,7 @@ extension CALayer {
 final class WelcomeViewController: UIViewController {
     static var value: Int = 0
     static let valueLabel = ValueLabel()
-    static let commentView = CommentView()
+    static let commentView = CommentView(radius: 12)
     private let newsButton = MenuButton(radius: 12)
     private let notesButton = MenuButton(radius: 12)
     private let colorsButton = MenuButton(radius: 12)
@@ -41,48 +45,87 @@ final class WelcomeViewController: UIViewController {
     private func setupIncrementButton() {
         view.addSubview(WelcomeViewController.incrementButton)
         WelcomeViewController.incrementButton.setHeight(to: 48)
-        WelcomeViewController.incrementButton.pinTop(to: self.view.centerYAnchor)
-        WelcomeViewController.incrementButton.pin(to: self.view, [.left: 24, .right: 24])
+        WelcomeViewController.incrementButton.pinTop(
+            to: self.view.centerYAnchor
+        )
+        WelcomeViewController.incrementButton.pin(
+            to: self.view,
+            [.left: 24, .right: 24]
+        )
         WelcomeViewController.incrementButton.backgroundColor = .white
         WelcomeViewController.incrementButton.layer.applyShadow()
-        WelcomeViewController.incrementButton.setupText("Increment", .black, .systemFont(ofSize: 16.0, weight: .medium))
+        WelcomeViewController.incrementButton.setupText(
+            "Increment",
+            .black,
+            .systemFont(ofSize: 16.0, weight: .medium)
+        )
     }
     
     private func setupValueLabel() {
         view.addSubview(WelcomeViewController.valueLabel)
-        WelcomeViewController.valueLabel.pinBottom(to: WelcomeViewController.incrementButton.topAnchor, 16)
-        WelcomeViewController.valueLabel.pinCenter(to: self.view.centerXAnchor)
-        WelcomeViewController.valueLabel.setupText("\(WelcomeViewController.value)", .black, .systemFont(ofSize: 40.0, weight: .bold))
+        WelcomeViewController.valueLabel.pinBottom(
+            to: WelcomeViewController.incrementButton.topAnchor,
+            16
+        )
+        WelcomeViewController.valueLabel.pinCenter(
+            to: self.view.centerXAnchor
+        )
+        WelcomeViewController.valueLabel.setupText(
+            "\(WelcomeViewController.value)",
+            .black,
+            .systemFont(ofSize: 40.0, weight: .bold)
+        )
     }
     
     private func setupCommentView() {
         view.addSubview(WelcomeViewController.commentView)
-        WelcomeViewController.commentView.pinTop(to: self.view.safeAreaLayoutGuide.topAnchor)
-        WelcomeViewController.commentView.pin(to: self.view, [.left: 24, .right: 24])
+        WelcomeViewController.commentView.pinTop(
+            to: self.view.safeAreaLayoutGuide.topAnchor
+        )
+        WelcomeViewController.commentView.pin(
+            to: self.view,
+            [.left: 24, .right: 24]
+        )
         WelcomeViewController.commentView.backgroundColor = .white
-        WelcomeViewController.commentView.layer.cornerRadius = 12
-        WelcomeViewController.commentView.setupText("0", .systemGray, .systemFont(ofSize: 14.0, weight: .regular))
+        WelcomeViewController.commentView.setupText(
+            "0",
+            .systemGray,
+            .systemFont(ofSize: 14.0, weight: .regular)
+        )
     }
     
     private func setupMenuButton(button: MenuButton, title: String) {
         view.addSubview(button)
         button.backgroundColor = .white
-        button.heightAnchor.constraint(equalTo: colorsButton.widthAnchor).isActive = true
-        button.setupText(title, .black, .systemFont(ofSize: 16.0, weight: .medium))
+        button.heightAnchor.constraint(
+            equalTo: colorsButton.widthAnchor
+        ).isActive = true
+        button.setupText(
+            title,
+            .black,
+            .systemFont(ofSize: 16.0, weight: .medium)
+        )
     }
     
     private func setupMenuButtons() {
         setupMenuButton(button: colorsButton, title: "🎨")
         setupMenuButton(button: notesButton, title: "📝")
         setupMenuButton(button: newsButton, title: "📰")
-
-        let buttonsSV = UIStackView(arrangedSubviews: [colorsButton, notesButton, newsButton])
+        let buttonsSV = UIStackView(
+            arrangedSubviews: [colorsButton, notesButton, newsButton]
+        )
         buttonsSV.spacing = 12
         buttonsSV.axis = .horizontal
         buttonsSV.distribution = .fillEqually
         self.view.addSubview(buttonsSV)
-        buttonsSV.pin(to: self.view, [.left: 24, .right: 24])
-        buttonsSV.pinBottom(to: self.view.safeAreaLayoutGuide.bottomAnchor, 24)
+        buttonsSV.pin(
+            to: self.view,
+            [.left: 24, .right: 24]
+        )
+        buttonsSV.pinBottom(
+            to: self.view.safeAreaLayoutGuide.bottomAnchor,
+            24
+        )
     }
     
     static func updateCommentLabel(value: Int) {
@@ -113,6 +156,10 @@ final class WelcomeViewController: UIViewController {
     }
     
     static func updateValueLabel(value: Int) {
-        WelcomeViewController.valueLabel.setupText("\(WelcomeViewController.value)", .black, .systemFont(ofSize: 40.0, weight: .bold))
+        WelcomeViewController.valueLabel.setupText(
+            "\(WelcomeViewController.value)",
+            .black,
+            .systemFont(ofSize: 40.0, weight: .bold)
+        )
     }
 }

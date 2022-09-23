@@ -30,7 +30,11 @@ final class MenuButton: UIView {
         layer.cornerRadius = cornerRadius
     }
     
-    func setupText(_ text: String, _ color: UIColor, _ font: UIFont) {
+    func setupText(
+        _ text: String,
+        _ color: UIColor,
+        _ font: UIFont
+    ) {
         let label = UILabel()
         label.text = text
         addSubview(label)

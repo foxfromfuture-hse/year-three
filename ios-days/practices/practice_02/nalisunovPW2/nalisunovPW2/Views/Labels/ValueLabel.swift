@@ -9,6 +9,7 @@ import UIKit
 
 final class ValueLabel: UIView {
     var label = UILabel()
+    
     init() {
         super.init(frame: .zero)
     }
@@ -18,7 +19,11 @@ final class ValueLabel: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupText(_ text: String, _ color: UIColor, _ font: UIFont) {
+    func setupText(
+        _ text: String,
+        _ color: UIColor,
+        _ font: UIFont
+    ) {
         label.text = text
         addSubview(label)
         label.pin(to: self)

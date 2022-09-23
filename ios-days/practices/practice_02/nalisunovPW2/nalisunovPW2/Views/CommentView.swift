@@ -31,10 +31,17 @@ final class CommentView: UIView {
         layer.cornerRadius = cornerRadius
     }
     
-    func setupText(_ text: String, _ color: UIColor = .systemGray, _ font: UIFont = .systemFont(ofSize: 14.0, weight: .regular)) {
+    func setupText(
+        _ text: String,
+        _ color: UIColor = .systemGray,
+        _ font: UIFont = .systemFont(ofSize: 14.0, weight: .regular)
+    ) {
         label.text = text
         addSubview(label)
-        label.pin(to: self, [.top: 16, .left: 16, .bottom: 16, .right: 16])
+        label.pin(
+            to: self,
+            [.top: 16, .left: 16, .bottom: 16, .right: 16]
+        )
         label.textColor = color
         label.textAlignment = .center
         label.numberOfLines = 0

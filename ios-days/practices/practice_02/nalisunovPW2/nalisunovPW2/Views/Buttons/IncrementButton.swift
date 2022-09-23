@@ -10,8 +10,8 @@ import UIKit
 final class IncrementButton: UIView {
     var cornerRadius: CGFloat?
     var label = UILabel()
-
     var pressAction: (() -> Void)?
+    
     init(
         radius cornerRadius: CGFloat? = nil
     ) {
@@ -19,12 +19,12 @@ final class IncrementButton: UIView {
         super.init(frame: .zero)
         configureUI()
     }
-
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private func configureUI() {
         let tapRecognizer = UITapGestureRecognizer(
             target: self,
@@ -37,7 +37,11 @@ final class IncrementButton: UIView {
         layer.cornerRadius = cornerRadius
     }
     
-    func setupText(_ text: String, _ color: UIColor, _ font: UIFont) {
+    func setupText(
+        _ text: String,
+        _ color: UIColor,
+        _ font: UIFont
+    ) {
         label.text = text
         addSubview(label)
         label.pin(to: self)
@@ -47,14 +51,19 @@ final class IncrementButton: UIView {
     }
     
     @objc
-    private func incrementButtonPressed(_ sender: UITapGestureRecognizer? = nil) {
+    private func incrementButtonPressed(
+        _ sender: UITapGestureRecognizer? = nil
+    ) {
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
-        
         UIView.animate(withDuration: 1, animations: {
             WelcomeViewController.value += 1
-            WelcomeViewController.updateCommentLabel(value: WelcomeViewController.value)
-            WelcomeViewController.updateValueLabel(value: WelcomeViewController.value)
+            WelcomeViewController.updateCommentLabel(
+                value: WelcomeViewController.value
+            )
+            WelcomeViewController.updateValueLabel(
+                value: WelcomeViewController.value
+            )
         })
         pressAction?()
     }
