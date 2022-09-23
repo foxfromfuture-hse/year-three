@@ -7,19 +7,6 @@
 
 import UIKit
 
-extension CALayer {
-    func applyShadow(
-        color: UIColor = .systemGray,
-        opacity: Float = 0.3,
-        radius: CGFloat = 10
-    ) {
-        self.shadowColor = color.cgColor
-        self.shadowOpacity = opacity
-        self.shadowOffset = .zero
-        self.shadowRadius = radius
-    }
-}
-
 final class WelcomeViewController: UIViewController {
     static var value: Int = 0
     static let valueLabel = ValueLabel()
